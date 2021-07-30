@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="Demo.css">
+    <script src="Demotest.js"></script> -->
+</head>
+<body>
+    <table id="tb" class="table tablesorter" border="1">
+        <thead>
+          <tr>
+            <th>Col1</th>
+            <th>Col2</th>
+            <th>Col3</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="tablesorter-hasChildRow">
+          <td>
+            <button type="button" data-toggle="collapse" data-target="#A-child-1, #A-child-2"><span class="expand-toggle">&gt;</span></button>
+            <span>Node A</span>
+          </td>
+          <td>A</td>
+          <td>A</td>
+        </tr>
+        <tr id="A-child-1" class="collapse tablesorter-childRow">
+          <td>
+            <span>A child 1</span>
+          </td>
+          <td>A1</td>
+          <td>A1</td>
+        </tr>
+        <tr id="A-child-2" class="collapse tablesorter-childRow">
+          <td>
+            <span>A child 2</span>
+          </td>
+          <td>Foo</td>
+          <td>Bar</td>
+        </tr>
+        <tr class="tablesorter-hasChildRow">
+          <td>
+            <button type="button" data-toggle="collapse" data-target="#B-child-1, #B-child-2"><span class="expand-toggle">&gt;</span></button>
+            <span>Node B</span>
+          </td>
+          <td>Foo</td>
+          <td>Bar</td>
+        </tr>
+        <tr id="B-child-1" class="collapse tablesorter-childRow">
+          <td>
+            <span>B child 1</span>
+          </td>
+          <td>Foo</td>
+          <td>Bar</td>
+        </tr>
+        <tr id="B-child-2" class="collapse tablesorter-childRow">
+          <td>
+            <span>B child 2</span>
+          </td>
+          <td>Foo</td>
+          <td>Bar</td>
+        </tr>  
+        </tbody>
+        
+      </table>
+      <script>
+          $(document).ready(function() {
+	$("#tb").tablesorter();
+})
+
+      </script>
+</body>
+</html>

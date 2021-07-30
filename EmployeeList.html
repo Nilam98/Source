@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="Employee.css">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style> -->
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+
+   
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar  navbar-inverse">
+          <form class="navbar-form navbar-left">
+            <div class="input-group">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#empModal" data-backdrop="static" data-keyboard="false">Add Employee</button>
+            </div>
+          </form>
+          <form class="navbar-form navbar-right">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+              <input type="text" id="search" class="form-control" placeholder="Search" name="search">
+              </div>
+          </form>
+          </nav>
+    </div>
+
+          <div class="modal fade" id="empModal"  role="dialog" data-backdrop="static" data-keyboard="false" >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="ModalLabel">Employee Detail</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form name="MyForm" id="MyForm" class="employee-form">
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>First Name </label>   
+                          <input type="text" class="form-control Nat-required" error-message="Please Enter First Name!!!"  id="fname" name="fname">
+
+                      </div>
+                     
+                      <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control Nat-required" error-message="Please Enter Last Name!!!" id="lname" name="lname" >
+                      </div> 
+                    </div>
+                
+                    <div class="gender" id="gender">
+                      <label>  Gender:</label>
+                      <label class="form-check form-check-inline">
+                        <input class="form-check-input Nat-required" type="radio" id="male" name="gender" value="male" checked>
+                        <span class="form-check-label"> Male </span>
+                      </label>
+                      <label class="form-check form-check-inline">
+                        <input class="form-check-input Nat-required" type="radio" id="female" name="gender" value="female">
+                        <span class="form-check-label"> Female</span>
+                      </label>
+                    </div>
+             
+                    <div class="form-row" id="n1">
+                      <div class="form-group col-md-10" id="n2">
+                        <label>Skill</label>
+                        <input type="text" class="form-control Nat-required" error-message="Please Enter Skill!!!" name="skill" id="skill"/>
+                      
+                      </div>
+                      <div class="form-group col-md-2" id="n3">
+                        <a  class="btn btn-default" id="addSkill"><span class="glyphicon glyphicon-plus"></a>
+                    </div>
+                    <div id="skillDiv"></div>
+                  </div>
+                  <input type="hidden" id="hiddenSkill" value="">
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Designation</label>
+                        <select type="select-one" class="form-control Nat-required" error-message="Please select Designation!!!" name="designation" id="role">
+                          <option class="hidden"> Choose</option>
+                          <option>Trainee</option>
+                          <option>Developer</option>
+                          <option>Senior Developer</option>
+                          <option>Project Manager</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label >DOB</label>
+                        <input type="text" class="form-control Nat-required" id="datepicker" error-message="Please select DOB!!!" placeholder="Select Date"/>
+                    </div>
+                    </div>
+                     
+                    <div class="Hobbies" id="Hobbies">
+                      <label>Intrested in:</label>
+                      <div> <label><input type="checkbox" value="Reading" name="Hobbies" id="Hobbies" class="Nat-required"> Reading </label></div>
+                      <div> <label><input type="checkbox" value="Photography" name="Hobbies" id="Hobbies" class="Nat-required"> Photography </label></div>
+                      <div> <label><input type="checkbox" value="coding" name="Hobbies" id="Hobbies" class="Nat-required"> Coading </label></div>
+                    </div>
+                 
+                    
+                    <a  class="btn btn-primary" id="submit">Save</a>
+                    <button type="button" class="btn btn-default refresh" id="close" data-dismiss="modal">Cancel</button>
+                    <input type="hidden" id="hidden" value="">
+                  </form>
+                  
+                </div>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <h3 id="heading">------Employee Data------</h3>
+              <table id="tableData" class="table table-hover  paginated tablesorter">
+              <thead>
+                <tr>
+                  <th  colspan="2">Show</th>
+                  <th  colspan="2" class="thfirstname">Firstname</th>
+                  <th  colspan="2">Lastname</th>
+                  <th  colspan="2">Designation</th>
+                  <th  colspan="2">Action</th>
+                </tr>
+              </thead>
+              <tbody id="dataBody">
+        
+              </tbody>
+              </table>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script> -->
+    <script src="jquery-ui.min.js"></script>
+    <script src="Myvalidation.js"></script>
+    <!-- <script src="Empvalidation.js"></script> -->
+    <script src="Save.js"></script>
+    <!-- <script src="skillupdate.js"></script> -->
+  
+</body>
+
+</html>

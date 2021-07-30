@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="click" type="submit">show</button>
+    <script>
+        document.ready(function(){
+            $("#click").click(function(){
+                swal({
+                    text: "Hello world!",
+                    });
+            })
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+</body>
+</html>
